@@ -24,7 +24,7 @@ namespace EventApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EventGuest>().HasKey(e => new { e.EventId, e.GuestId });
+            modelBuilder.Entity<EventGuest>().HasKey(eventGuest => new { eventGuest.EventId, eventGuest.GuestId });
         }
 
     }

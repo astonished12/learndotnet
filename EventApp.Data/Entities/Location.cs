@@ -11,6 +11,8 @@ namespace EventApp.Data.Entities
         public string Address { get; set; }
         public short Capacity { get; set; }
         public decimal RentFee { get; set; }
+
+        //one to many (1 location has multiple events) ref to Event table
         public ICollection<Event> Events { get; set; }
     }
 }

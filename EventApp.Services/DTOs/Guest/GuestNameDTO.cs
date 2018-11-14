@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventApp.Services.DTOs
+namespace EventApp.Services.DTOs.Guest
 {
-    public class GuesNameDTO
+    public class GuestNameDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

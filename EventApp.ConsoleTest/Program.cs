@@ -7,10 +7,12 @@ namespace EventApp.ConsoleTest
         static void Main(string[] args)
         {
             TestService testService = new TestService();
-            foreach (var item in testService.GetMajorGuests())
+            foreach (var item in testService.GetGuestsDetailsFromExpertNetowrkParty())
             {
-                System.Console.WriteLine(item.FirstName);
+                System.Console.WriteLine($"{item.FirstName} si {item.LastName} si {item.Email}");
             }
+
+
         }
     }
 }

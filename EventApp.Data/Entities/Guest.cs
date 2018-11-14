@@ -11,7 +11,8 @@ namespace EventApp.Data.Entities
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public int Age { get; set; }
 
-        public ICollection<EventGuest> EventGuests { get; set; }
+        public virtual ICollection<EventGuest> EventGuests { get; set; }
     }
 }

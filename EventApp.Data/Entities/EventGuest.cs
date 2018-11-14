@@ -10,10 +10,10 @@ namespace EventApp.Data.Entities
         public bool ConfirmedAttendence { get; set; }
 
         public int EventId { get; set; }
-        public Event Event { get; set; }
+        public virtual Event Event { get; set; }
 
         public int GuestId { get; set; }
-        public Guest Guest { get; set; }
+        public virtual Guest Guest { get; set; }
 
     }
 }

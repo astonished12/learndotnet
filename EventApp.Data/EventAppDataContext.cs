@@ -1,8 +1,8 @@
 ﻿using EventApp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+
 
 namespace EventApp.Data
 {
@@ -15,11 +15,14 @@ namespace EventApp.Data
         public DbSet<Guest> Guests { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<EventGuest> EventGuests { get; set; }
+        private static readonly LoggerFactory Log =  new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
 
- 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=GHOST;Initial Catalog=NLayerSample;User id=internship");
+            optionsBuilder.UseSqlServer("Data Source=GHOST;Initial Catalog=NLayerSample;User id=internship")
+                .UseLoggerFactory(Log)
+                .UseLazyLoadingProxies(true);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

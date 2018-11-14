@@ -13,6 +13,9 @@ namespace EventApp.Data.Entities
         public decimal RentFee { get; set; }
 
         //one to many (1 location has multiple events) ref to Event table
-        public ICollection<Event> Events { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
+
+        //one to many (1 location has n Staffs)
+        public virtual ICollection<Staff> Staffs { get; set; }
     }
 }

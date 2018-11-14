@@ -15,12 +15,12 @@ namespace EventApp.Data.Entities
 
         //ref to Location table one to one
         public int LocationId { get; set; }
-        public Location Location { get; set; }
+        public virtual Location Location { get; set; }
 
         //ref to EventTypes one to one
         public int EventTypeId { get; set; }
-        public EventType EventType { get; set; }
+        public virtual EventType EventType { get; set; }
 
-        /*public ICollection<EventGuest> EventGuests { get; set; }*/
+        public virtual ICollection<EventGuest> EventGuests { get; set; }
     }
 }

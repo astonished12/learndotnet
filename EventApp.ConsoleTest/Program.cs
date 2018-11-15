@@ -7,9 +7,9 @@ namespace EventApp.ConsoleTest
         static void Main(string[] args)
         {
             TestService testService = new TestService();
-            foreach (var item in testService.GetGuestsDetailsFromExpertNetowrkParty())
+            foreach (var item in testService.GetUniqueEmailsAndEventDetailsForWedding())
             {
-                System.Console.WriteLine($"{item.FirstName} si {item.LastName} si {item.Email}");
+                System.Console.WriteLine($"{item.Email} si {item.EventName} si {item.DescriptionEvent}");
             }
 
 

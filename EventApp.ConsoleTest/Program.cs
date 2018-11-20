@@ -7,11 +7,11 @@ namespace EventApp.ConsoleTest
         static void Main(string[] args)
         {
             TestService testService = new TestService();
-            foreach (var item in testService.GetUniqueEmailsAndEventDetailsForWedding())
+            foreach (var item in testService.CostEventPerParticipant())
             {
-                System.Console.WriteLine($"{item.Email} si {item.EventName} si {item.DescriptionEvent}");
+                System.Console.WriteLine($"{item.Cost} {item.EventName} {item.LocationName}");
             }
-
+            //System.Console.WriteLine(testService.GetTheMonthOfTheYearThatHasMostEventsInIt());
 
         }
     }

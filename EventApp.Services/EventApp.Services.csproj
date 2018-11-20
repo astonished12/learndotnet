@@ -12,8 +12,4 @@
     <ProjectReference Include="..\EventApp.Data\EventApp.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Event\" />
-  </ItemGroup>
-
 </Project>

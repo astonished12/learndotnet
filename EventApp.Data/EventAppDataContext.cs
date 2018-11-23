@@ -18,11 +18,13 @@ namespace EventApp.Data
         //private static readonly LoggerFactory Log =  new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
 
 
+        public EventAppDataContext(DbContextOptions<EventAppDataContext> options) : base(options)
+        {
+            
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=GHOST;Initial Catalog=NLayerSample;User id=internship")
-                //.UseLoggerFactory(Log)
-                .UseLazyLoadingProxies(true);
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -17,6 +17,7 @@ namespace EventApp.Services
 {
     public class TestService
     {
+        /*
         private EventAppDataContext Context = new EventAppDataContext();
         // Ex3
         public IEnumerable<GuestDTO> GetMajorGuests()
@@ -251,9 +252,9 @@ namespace EventApp.Services
                                  .ToList();
 
         }
+        */
 
 
 
-
-    }
+    } 
 }

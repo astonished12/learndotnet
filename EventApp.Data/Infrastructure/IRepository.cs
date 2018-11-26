@@ -1,13 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 
 namespace EventApp.Data.Infrastructure
 {
     public interface IRepository<T> where T : class
     {
         void Add(T entity);
-        IEnumerable<T> Query(System.Linq.Expressions.Expression<Func<T, bool>> where);
+
+        void Update(T entity);
+
+        List<T> GetAll();
+
+        void Delete(T entity);
+
+        void Delete(IEnumerable<T> entities);
+
+        IQueryable<T> Query(Expression<Func<T, bool>> expression);
+
+        IQueryable<T> Query();
+
+        T GetById(int id);
     }
 }

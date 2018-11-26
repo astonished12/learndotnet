@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging.Console;
 
 namespace EventApp.Data
 {
-    public class EventAppDataContext:DbContext
+    public class EventAppDataContext : DbContext
     {
         public DbSet<Location> Locations { get; set; }
         public DbSet<Event> Events { get; set; }
@@ -20,11 +20,12 @@ namespace EventApp.Data
 
         public EventAppDataContext(DbContextOptions<EventAppDataContext> options) : base(options)
         {
-            
+
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -15,7 +15,7 @@ namespace EventApp.Data.Infrastructure
         public Repository(EventAppDataContext context)
         {
             this.context = context;
-            dbSet = context.Set<T>();
+            dbSet = this.context.Set<T>();
         }
 
         public void Add(T entity)
@@ -23,9 +23,42 @@ namespace EventApp.Data.Infrastructure
             dbSet.Add(entity);
         }
 
-        public IEnumerable<T> Query(Expression<Func<T, bool>> @where)
+        public void Delete(T entity)
         {
-            return dbSet.Where(where).ToList();
+            dbSet.Remove(entity);
         }
+
+        public void Delete(IEnumerable<T> entities)
+        {
+            dbSet.RemoveRange(entities);
+        }
+
+        public List<T> GetAll()
+        {
+            return dbSet.ToList();
+        }
+
+        public T GetById(int id)
+        {
+            return dbSet.Find(id);
+        }
+
+        public IQueryable<T> Query()
+        {
+            return dbSet.AsQueryable();
+        }
+
+        public IQueryable<T> Query(Expression<Func<T, bool>> expression) 
+        {
+            return dbSet.Where(expression);
+        }
+
+        public void Update(T entity)
+        {
+            dbSet.Attach(entity);
+            context.Entry(entity).State = EntityState.Modified;
+        }
+           
+
     }
 }

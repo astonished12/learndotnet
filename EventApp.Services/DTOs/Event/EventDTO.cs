@@ -12,6 +12,7 @@ namespace EventApp.Services.DTOs.Event
         public DateTime EndTime { get; set; }
         public decimal EstimatedBudget { get; set; }
         public string Description { get; set; }
-
+        public int LocationId { get; set; }
+        public int EventTypeId { get; set; }
     }
 }

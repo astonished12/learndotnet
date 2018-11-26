@@ -4,6 +4,8 @@ using EventApp.Services.Infrastructure;
 using EventApp.Services.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using EventApp.Data.Entities;
+using EventApp.ConsoleTest.MockEventService;
 
 namespace EventApp.ConsoleTest
 {
@@ -18,14 +20,17 @@ namespace EventApp.ConsoleTest
             return builder.Build();
         }
 
+
         static void Main(string[] args)
         {
             var services = DependencyMapper.GetDependencies(GetConfiguration()).BuildServiceProvider();
-            using (var scope = services.CreateScope())
+            EventServiceSUT eventServiceSUT = new EventServiceSUT(services);
+            
+            if(eventServiceSUT.TestGetEventByName("Super Name"))
             {
-                var eventServices = scope.ServiceProvider.GetService<IEventService>();
-                var events = eventServices.GetEvents();
+                System.Console.WriteLine("Test one passed");
             }
+
         }
     }
 }

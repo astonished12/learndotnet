@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EventApp.Data;
+﻿using EventApp.Data;
 using EventApp.Data.Infrastructure;
 using EventApp.Services.Services.Implementation;
 using EventApp.Services.Services.Interfaces;
@@ -23,6 +20,7 @@ namespace EventApp.Services.Infrastructure
             services.AddScoped<IEventService, EventService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<TestService, TestService>();
 
             return services;
         }

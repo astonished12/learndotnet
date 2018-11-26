@@ -17,8 +17,14 @@ namespace EventApp.Services
 {
     public class TestService
     {
-        /*
-        private EventAppDataContext Context = new EventAppDataContext();
+
+        private readonly EventAppDataContext Context;
+
+        public TestService(EventAppDataContext context)
+        {
+            this.Context = context;
+        }
+
         // Ex3
         public IEnumerable<GuestDTO> GetMajorGuests()
         {
@@ -216,20 +222,20 @@ namespace EventApp.Services
         public IEnumerable<ProfitWedding> ProfitForAllWeddings()
         {
             return Context.Events.Include(l => l.Location)
-                                      .Include(et => et.EventType)
-                                      .Include(s => s.Location.Staffs)
-                                      .Include(eg => eg.EventGuests)
-                                      .Where(evt => evt.Name.Contains("Wedding") && evt.EventGuests.Any(egh => egh.HasAttended))
-                                      .GroupBy(x => new { x.Name })
-                                      .Select(w => new ProfitWedding
-                                      {
-                                          WeddingName = w.Key.Name,
-                                          Profit = w.Sum(xw => xw.EventGuests.Where(ha => ha.HasAttended).Sum(ha => ha.GiftAmount))
-                                          - w.Select(lf => lf.Location.RentFee).FirstOrDefault()
-                                          - w.Select(sf => sf.Location.Staffs.Select(sfs => sfs.Fee).Sum()).FirstOrDefault()
-                                      })
-                                      .Distinct()
-                                      .ToList();
+                            .Include(et => et.EventType)
+                            .Include(s => s.Location.Staffs)
+                            .Include(eg => eg.EventGuests)
+                            .Where(evt => evt.Name.Contains("Wedding") && evt.EventGuests.Any(egh => egh.HasAttended))
+                            .GroupBy(x => new { x.Name })
+                            .Select(w => new ProfitWedding
+                            {
+                                WeddingName = w.Key.Name,
+                                Profit = w.Sum(xw => xw.EventGuests.Where(ha => ha.HasAttended).Sum(ha => ha.GiftAmount))
+                                - w.Select(lf => lf.Location.RentFee).FirstOrDefault()
+                                - w.Select(sf => sf.Location.Staffs.Select(sfs => sfs.Fee).Sum()).FirstOrDefault()
+                            })
+                            .Distinct()
+                            .ToList();
 
         }
 
@@ -252,7 +258,7 @@ namespace EventApp.Services
                                  .ToList();
 
         }
-        */
+        
 
 
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventApp.Services.DTOs.Event
+namespace EventApp.Services.EventService.EventDtos
 {
     public class EventParticipant
     {

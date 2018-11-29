@@ -12,5 +12,6 @@ namespace EventApp.Services.DTOs.Staff
         public string Email { get; set; }
         public string Phone { get; set; }
         public decimal Fee { get; set; }
+        public int StaffRoleId { get; set; }
     }
 }

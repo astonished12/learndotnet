@@ -1,10 +1,10 @@
 ﻿using EventApp.Data;
 using EventApp.Data.Entities;
-using EventApp.Services.DTOs.Event;
 using EventApp.Services.DTOs.EventsGuest;
 using EventApp.Services.DTOs.Guest;
 using EventApp.Services.DTOs.Location;
 using EventApp.Services.DTOs.Staff;
+using EventApp.Services.EventService.EventDtos;
 using Microsoft.EntityFrameworkCore;
 using Omu.ValueInjecter;
 using System;

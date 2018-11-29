@@ -1,4 +1,4 @@
-﻿namespace EventApp.Services.DTOs.Event
+﻿namespace EventApp.Services.EventService.EventDtos
 {
     public class ProfitWedding
     {

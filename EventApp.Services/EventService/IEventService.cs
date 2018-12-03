@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using EventApp.Data.Entities;
-using EventApp.Services.DTOs.Guest;
 using EventApp.Services.DTOs.Location;
 using EventApp.Services.EventService.EventDtos;
+using EventApp.Services.GuestService.GuestDtos;
+using EventApp.Services.Utils;
 
-namespace EventApp.Services.Services.EventService
+namespace EventApp.Services.EventService
 {
     public interface IEventService
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventApp.Services.DTOs.Staff
+namespace EventApp.Services.StaffService.StaffDtos
 {
     public class StaffDTO
     {

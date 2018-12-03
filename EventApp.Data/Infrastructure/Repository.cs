@@ -48,7 +48,7 @@ namespace EventApp.Data.Infrastructure
             return dbSet.AsQueryable();
         }
 
-        public IQueryable<T> Query(Expression<Func<T, bool>> expression) 
+        public IQueryable<T> Query(Expression<Func<T, bool>> expression)
         {
             return dbSet.Where(expression);
         }
@@ -58,7 +58,6 @@ namespace EventApp.Data.Infrastructure
             dbSet.Attach(entity);
             context.Entry(entity).State = EntityState.Modified;
         }
-           
-
+    
     }
 }

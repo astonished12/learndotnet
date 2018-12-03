@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventApp.Services.DTOs.EventsGuest
+namespace EventApp.Services.EventService.EventDtos
 {
     public class EventsGuestDTO
     {

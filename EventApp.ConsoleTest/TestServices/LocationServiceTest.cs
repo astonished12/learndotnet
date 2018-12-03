@@ -1,8 +1,8 @@
 ﻿using EventApp.Data.Entities;
 using EventApp.Data.Infrastructure;
 using EventApp.Services.DTOs.Location;
-using EventApp.Services.DTOs.Staff;
-using EventApp.Services.LocationServices;
+using EventApp.Services.LocationService;
+using EventApp.Services.StaffService.StaffDtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;

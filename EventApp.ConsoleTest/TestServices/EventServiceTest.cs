@@ -1,16 +1,15 @@
 ﻿using EventApp.Data.Entities;
 using EventApp.Data.Infrastructure;
-using EventApp.Services;
-using EventApp.Services.DTOs.Guest;
 using EventApp.Services.DTOs.Location;
+using EventApp.Services.EventService;
 using EventApp.Services.EventService.EventDtos;
-using EventApp.Services.Services.EventService;
+using EventApp.Services.GuestService.GuestDtos;
+using EventApp.Services.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EventApp.ConsoleTest.MockEventService
 {

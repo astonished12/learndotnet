@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using EventApp.Data.Entities;
 using EventApp.Data.Infrastructure;
-using EventApp.Services.DTOs.Guest;
 using EventApp.Services.DTOs.Location;
-using EventApp.Services.DTOs.Staff;
+using EventApp.Services.GuestService.GuestDtos;
+using EventApp.Services.StaffService.StaffDtos;
 using Microsoft.EntityFrameworkCore;
 using Omu.ValueInjecter;
 
-namespace EventApp.Services.LocationServices
+namespace EventApp.Services.LocationService
 {
     public class LocationService : ILocationService
     {
@@ -65,24 +65,24 @@ namespace EventApp.Services.LocationServices
             return newLocation.Id;
         }
 
-        public List<GuestDTO> GetLocations()
+        public List<LocationDTO> GetLocations()
         {
-            return locationRepo.GetAll().Select(g => new GuestDTO().InjectFrom(g) as GuestDTO).ToList();
+            return locationRepo.GetAll().Select(x => new LocationDTO().InjectFrom(x) as LocationDTO).ToList();
         }
 
-        public List<GuestDTO> GetLocationsByFee(int fee)
+        public List<LocationDTO> GetLocationsByFee(int fee)
         {
-            return locationRepo.Query().Where(g => g.RentFee < fee).Select(g => new GuestDTO().InjectFrom(g) as GuestDTO).ToList();
+            return locationRepo.Query().Where(x => x.RentFee < fee).Select(x => new LocationDTO().InjectFrom(x) as LocationDTO).ToList();
         }
 
-        public List<GuestDTO> GetLocationsByName(String name)
+        public List<LocationDTO> GetLocationsByName(String name)
         {
-            return locationRepo.Query().Where(g => g.Name.Contains(name)).Select(g => new GuestDTO().InjectFrom(g) as GuestDTO).ToList();
+            return locationRepo.Query().Where(x => x.Name.Contains(name)).Select(x => new LocationDTO().InjectFrom(x) as LocationDTO).ToList();
         }
 
-        public List<GuestDTO> GetLocationsBySize(int size)
+        public List<LocationDTO> GetLocationsBySize(int size)
         {
-            return locationRepo.Query().Where(g => g.Capacity == size).Select(g => new GuestDTO().InjectFrom(g) as GuestDTO).ToList();
+            return locationRepo.Query().Where(x => x.Capacity == size).Select(x => new LocationDTO().InjectFrom(x) as LocationDTO).ToList();
         }
     }
 }

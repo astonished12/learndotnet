@@ -1,10 +1,9 @@
 ﻿using EventApp.Data;
 using EventApp.Data.Entities;
-using EventApp.Services.DTOs.EventsGuest;
-using EventApp.Services.DTOs.Guest;
 using EventApp.Services.DTOs.Location;
-using EventApp.Services.DTOs.Staff;
 using EventApp.Services.EventService.EventDtos;
+using EventApp.Services.GuestService.GuestDtos;
+using EventApp.Services.StaffService.StaffDtos;
 using Microsoft.EntityFrameworkCore;
 using Omu.ValueInjecter;
 using System;
@@ -13,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EventApp.Services
+namespace EventApp.Services.TestService
 {
-    public class TestService
+    public class TestService : ITestService
     {
 
         private readonly EventAppDataContext Context;

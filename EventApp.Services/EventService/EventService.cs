@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using EventApp.Data.Entities;
 using EventApp.Data.Infrastructure;
-using EventApp.Services.DTOs.Guest;
 using EventApp.Services.DTOs.Location;
 using EventApp.Services.EventService.EventDtos;
+using EventApp.Services.GuestService.GuestDtos;
+using EventApp.Services.Utils;
 using Microsoft.EntityFrameworkCore;
 using Omu.ValueInjecter;
 
-namespace EventApp.Services.Services.EventService
+namespace EventApp.Services.EventService
 {
     public class EventService : IEventService
     {
@@ -42,9 +43,9 @@ namespace EventApp.Services.Services.EventService
             return eventRepo.Query().Where(e => e.StartTime.Equals(dateTime)).Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
         }
 
-        public List<EventDTO> GetEventsByLocation(int locationID)
+        public List<EventDTO> GetEventsByLocation(int locationId)
         {
-            return eventRepo.Query().Where(e => e.Location.Id == locationID).Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
+            return eventRepo.Query().Where(e => e.Location.Id == locationId).Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
         }
 
         public List<EventDTO> GetEventsBySize(EventSize size)

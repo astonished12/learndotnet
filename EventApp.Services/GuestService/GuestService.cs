@@ -43,13 +43,13 @@ namespace EventApp.Services.GuestService
 
         public IEnumerable<GuestDTO> TopFiveGenerousGuests(int eventId)
         {
-            var guests = eventGuestRepo.Query().OrderByDescending(x => x.GiftAmount).Take(5).ToList();
+            var guests = eventGuestRepo.Query().Where(x => x.HasAttended).OrderByDescending(x => x.GiftAmount).Take(5).ToList();
             return guests.Select(g => new GuestDTO().InjectFrom(g) as GuestDTO);
         }
 
         public void UpdateGiftAmount(int eventId, int guestId, decimal giftAmount)
         {
-            var eventGuest = eventGuestRepo.Query().FirstOrDefault(x=> x.GuestId == guestId && x.EventId == eventId);
+            var eventGuest = eventGuestRepo.Query().FirstOrDefault(x => x.GuestId == guestId && x.EventId == eventId);
             if (eventGuest != null)
             {
                 eventGuest.GiftAmount = giftAmount;

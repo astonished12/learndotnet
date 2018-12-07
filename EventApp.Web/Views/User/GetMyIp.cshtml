@@ -1,0 +1,13 @@
+﻿@model EventApp.Web.Models.IpModel
+
+@{
+    ViewData["Title"] = "GetMyIp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetMyIp</h2>
+
+<h1>
+    @Html.DisplayNameFor(model => model.IpAddress) is @Html.DisplayFor(model => model.IpAddress)
+
+</h1>

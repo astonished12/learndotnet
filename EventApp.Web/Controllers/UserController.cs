@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventApp.Services.EventService;
 using EventApp.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,12 @@ namespace EventApp.Web.Controllers
     public class UserController : Controller
     {
         private readonly IHttpContextAccessor httpContextAccessor;
-        public UserController(IHttpContextAccessor httpContextAccessor)
+        private readonly IEventService eventService;
+
+        public UserController(IHttpContextAccessor httpContextAccessor, IEventService eventService)
         {
             this.httpContextAccessor = httpContextAccessor;
+            this.eventService = eventService;
         }
 
         public IActionResult Index()

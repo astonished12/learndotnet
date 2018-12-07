@@ -9,15 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EventApp.Services.Infrastructure
 {
-    public class DependencyMapper
+    public static class DependencyMapper
     {
-        public static IServiceCollection GetDependencies(IConfiguration configuration)
+        public static IServiceCollection GetDependencies(IConfiguration configuration, IServiceCollection services)
         {
-            var connection = configuration.GetConnectionString("EventAppConnectionString");
+            services = Data.Infrastructure.DependencyMapper.GetDependencies(configuration, services);
 
-            var services = new ServiceCollection();
-            services.AddDbContext<EventAppDataContext>(options => options.UseSqlServer(connection));
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IEventService, EventService.EventService>();
             services.AddScoped<ILocationService, LocationService.LocationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -19,6 +19,5 @@ namespace EventApp.Services.EventService
         int CreateEvent(EventDTO evnt);
         void AddGuestsToEvent(List<GuestDTO> guests, int eventId);
         void ChangeEventLocation(LocationDTO newLocation, int eventId);
-
     }
 }

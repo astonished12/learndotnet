@@ -16,7 +16,10 @@ namespace EventApp.Services.EventService
         List<EventDTO> GetEventsByDate(DateTime dateTime);
         List<EventDTO> GetEventsByLocation(int locationId);
         List<EventDTO> GetEventsBySize(EventSize size);
+        EventDTO GetEventById(int id);
         int CreateEvent(EventDTO evnt);
+        bool DeleteById(int id);
+        bool Update(EventDTO evnt);
         void AddGuestsToEvent(List<GuestDTO> guests, int eventId);
         void ChangeEventLocation(LocationDTO newLocation, int eventId);
     }

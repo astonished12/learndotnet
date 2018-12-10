@@ -33,6 +33,37 @@ namespace EventApp.Services.EventService
             return eventRepo.GetAll().Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
         }
 
+        public EventDTO GetEventById(int id)
+        {
+            var eventFromId = eventRepo.GetById(id);
+            if (eventFromId == null)
+                return null;
+            return new EventDTO().InjectFrom(eventRepo.GetById(id)) as EventDTO;
+        }
+
+        public bool DeleteById(int id)
+        {
+            var eventFromId = eventRepo.GetById(id);
+            if (eventFromId == null)
+                return false;
+
+            eventRepo.Delete(eventFromId);
+            unitOfWork.Commit();
+            return true;
+        }
+
+        public bool Update(EventDTO eventDTO)
+        {
+            var eventFromId = eventRepo.GetById(eventDTO.Id);
+            if (eventFromId == null)
+                return false;
+
+            eventFromId.InjectFrom(eventDTO);
+            eventRepo.Update(eventFromId);
+            unitOfWork.Commit();
+            return true;
+        }
+
         public List<EventDTO> GetEventsByName(String name)
         {
             return eventRepo.Query().Where(e => e.Name.Contains(name)).Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();

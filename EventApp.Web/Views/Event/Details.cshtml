@@ -1,0 +1,130 @@
+﻿@model EventApp.Web.Models.EventGuestsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EventModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.StartTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.StartTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.EndTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.EndTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.EstimatedBudget)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.EstimatedBudget)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.LocationId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.LocationId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventModel.EventTypeId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventModel.EventTypeId)
+        </dd>
+    </dl>
+</div>
+
+
+<div>
+    <h4>Invited Guests</h4>
+    <hr />
+    @{
+        if (Model.Guests.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <label asp-for="Guests.FirstOrDefault().Id"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Guests.FirstOrDefault().Age"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Guests.FirstOrDefault().Email"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Guests.FirstOrDefault().FirstName"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Guests.FirstOrDefault().LastName"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Guests.FirstOrDefault().Phone"></label>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var itm in Model.Guests)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => itm.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => itm.Age)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => itm.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => itm.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => itm.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => itm.Phone)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventModel.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -31,7 +31,7 @@ namespace EventApp.Services.GuestService
 
         public IEnumerable<GuestDTO> GetGuestsForAnEvent(int eventId)
         {
-            var guests = eventGuestRepo.Query().Include(x => x.Event).Where(x => x.Event.Id == eventId).ToList();
+            var guests = eventGuestRepo.Query().Include(x => x.Event).Include(x => x.Guest).Where(x => x.Event.Id == eventId).Select(x => x.Guest).ToList();
             return guests.Select(g => new GuestDTO().InjectFrom(g) as GuestDTO);
         }
 

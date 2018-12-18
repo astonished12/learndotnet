@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EventApp.Services.EventService;
 using EventApp.Services.EventService.EventDtos;
@@ -22,6 +23,7 @@ namespace EventApp.Web.Controllers
             this.guestService = guestService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             var eventModels = eventService.GetEvents().Select(x => new EventModel().InjectFrom(x) as EventModel);
@@ -72,6 +74,7 @@ namespace EventApp.Web.Controllers
 
             return View(new EventModel().InjectFrom(eventFromId) as EventModel);
         }
+        
 
         [HttpPost]
         public IActionResult Edit(EventModel eventModel)
@@ -79,6 +82,7 @@ namespace EventApp.Web.Controllers
             eventService.Update(new EventDTO().InjectFrom(eventModel) as EventDTO);
             return RedirectToAction("Index");
         }
+
 
         [HttpGet]
         public IActionResult Delete(int id)
@@ -98,5 +102,23 @@ namespace EventApp.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Search(string name)
+        {
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                var result = eventService.GetEventsByName(name.ToLower()).ToList().Select(x => new EventModel().InjectFrom(x) as EventModel);
+                if (!result.Any())
+                {
+                    return Ok(new List<EventModel>());
+                }
+                return Ok(result);
+            }
+            else
+            {
+                var result = eventService.GetEvents().Select(x => new EventModel().InjectFrom(x) as EventModel);
+                return Ok(result);
+            }
+        }
     }
 }

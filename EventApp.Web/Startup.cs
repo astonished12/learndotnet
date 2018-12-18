@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EventApp.Services.Infrastructure;
+using EventApp.Web.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -51,6 +52,9 @@ namespace EventApp.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseMiddleware<UserAgentMiddleware>();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

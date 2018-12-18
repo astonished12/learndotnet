@@ -10,64 +10,203 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EstimatedBudget)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventTypeId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+<p>
+    <label> Title: </label> <input name="filter" type="text" id="inputData" placeholder="name" />
+    <input type="button" id="searchButton" value="Filter" />
+</p>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="deleteButton" type="button" class="btn btn-primary">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dataTable" class="dataTableClass">
+    <table id="tableEvent" class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EstimatedBudget)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LocationId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventTypeId)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EstimatedBudget)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocationId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventTypeId)
+                </th>
+                <th></th>
             </tr>
+        </thead>
+        <tbody id="tableBody">
+            @foreach (var item in Model)
+            {
+                <tr data-id="@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstimatedBudget)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocationId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventTypeId)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        <a data-item-id="@item.Id" class="modalButton">Delete</a>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<!--Utils functions area-->
+<script>
+    function testPrime(num) {
+        var isPrime = true;
+        if (num >= 2) {
+            if (num == 2 || num == 3) {
+                isPrime = true;
+            }
+            else if (num % 2 == 0) {
+                isPrime = false;
+            }
+            else {
+                for (i = 3; i <= Math.floor(Math.sqrt(num)); i += 2) {
+                    if (num % i == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
         }
-    </tbody>
-</table>
+        else {
+            isPrime = false;
+        }
+        return isPrime;
+    }
+
+    function colorTable() {
+        $('#tableEvent tbody tr').each(function (i, el) {
+            if (el !== undefined) {
+                var trRowIsPrime = testPrime($(el).data("id"));
+                if (trRowIsPrime) {
+                    el.style.color = "blue";
+                }
+                console.log($(el).data("id") + " is prime? : " + testPrime($(el).data("id")));
+            }
+        })
+
+    }
+
+</script>
+
+<!--document ready calls-->
+<script>
+    $(function () {
+        colorTable();
+    })
+</script>
+
+<!--AJAX CALLS-->
+<script>
+    $("#searchButton").on("click", function () {
+        $.ajax({
+            url: "http://localhost:5000/Event/search?name=" + $('#inputData').val(),
+            type: 'GET',
+            error: function () {
+                $('#dataTable').append('<p>An error has occured</p>');
+            },
+            success: function (data) {
+                debugger;
+                var tableBody = $("#tableBody");
+                tableBody.empty();
+
+                for (var i = 0; i < data.length; i++) {
+                    var editLink =  '<a href="@Url.Action("Edit","Event")?id=' + data[i].id + '">Edit</a>';
+                    var detailsLink = '<a href="@Url.Action("Details","Event")?id=' + data[i].id + '">Details</a>';
+                    var deleteLink = '<a data-item-id=' + data[i].id + '" class="modalButton">Delete</a>';
+                    
+                    var tableRow = "<tr data-id="+data[i].id+'>"'+
+                    `<td>${data[i].name}</td>
+                    <td>${data[i].startTime}</td>
+                    <td>${data[i].endTime}</td>
+                    <td>${data[i].estimatedBudget}</td>
+                    <td>${data[i].description}</td>
+                    <td>${data[i].locationId}</td>
+                    <td>${data[i].eventTypeId}</td>
+                    <td>${editLink}</td>
+                    <td>${detailsLink}</td>
+                    <td>${deleteLink}</td>
+                    <tr>`;
+                    tableBody.append(tableRow);
+                }
+                colorTable();
+
+            },
+
+        })
+    });
+
+    $('.modalButton').on("click", function () {
+        var id = $(this).data('item-id');
+        $("#exampleModal").modal().toggle();
+        $("#exampleModal #deleteButton").on("click", function () {
+            console.log("This shit must be gone " + id);
+            $.ajax({
+                url: "http://localhost:5000/Event/delete?id=" + id,
+                type: 'POST',
+                error: function () {
+                    console.log("Catach error");
+                },
+                success: function (data) {
+                    $(`tr[data-id=${id}]`).remove();
+                    $("#exampleModal").modal("toggle");
+                }
+            });
+        });
+    });
+</script>

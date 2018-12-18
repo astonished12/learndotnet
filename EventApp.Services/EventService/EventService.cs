@@ -38,7 +38,7 @@ namespace EventApp.Services.EventService
             var eventFromId = eventRepo.GetById(id);
             if (eventFromId == null)
                 return null;
-            return new EventDTO().InjectFrom(eventRepo.GetById(id)) as EventDTO;
+            return new EventDTO().InjectFrom(eventFromId) as EventDTO;
         }
 
         public bool DeleteById(int id)
@@ -64,19 +64,19 @@ namespace EventApp.Services.EventService
             return true;
         }
 
-        public List<EventDTO> GetEventsByName(String name)
+        public IEnumerable<EventDTO> GetEventsByName(String name)
         {
-            return eventRepo.Query().Where(e => e.Name.Contains(name)).Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
+            return eventRepo.Query().Where(e => e.Name.ToLower().Contains(name)).ToList().Select(e => new EventDTO().InjectFrom(e) as EventDTO);
         }
 
         public List<EventDTO> GetEventsByDate(DateTime dateTime)
         {
-            return eventRepo.Query().Where(e => e.StartTime.Equals(dateTime)).Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
+            return eventRepo.Query().Where(e => e.StartTime.Equals(dateTime)).ToList().Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
         }
 
         public List<EventDTO> GetEventsByLocation(int locationId)
         {
-            return eventRepo.Query().Where(e => e.Location.Id == locationId).Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
+            return eventRepo.Query().Where(e => e.Location.Id == locationId).ToList().Select(e => new EventDTO().InjectFrom(e) as EventDTO).ToList();
         }
 
         public List<EventDTO> GetEventsBySize(EventSize size)

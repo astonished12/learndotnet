@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using EventApp.Services.EventService;
 using EventApp.Web.Models;
@@ -15,6 +16,7 @@ namespace EventApp.Web.Controllers
         private readonly IEventService eventService;
 
         public UserController(IHttpContextAccessor httpContextAccessor, IEventService eventService)
+
         {
             this.httpContextAccessor = httpContextAccessor;
             this.eventService = eventService;
@@ -53,5 +55,12 @@ namespace EventApp.Web.Controllers
             IpModel ipModel = new IpModel() { IpAddress = httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString() };
             return View(ipModel);
         }
+
+        [HttpGet]
+        public IActionResult Agent()
+        {
+            return View(model:Request.Headers["User-Agent"].ToString());
+        }
     }
+       
 }

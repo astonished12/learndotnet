@@ -12,7 +12,7 @@ namespace EventApp.Services.EventService
     public interface IEventService
     {
         List<EventDTO> GetEvents();
-        List<EventDTO> GetEventsByName(String name);
+        IEnumerable<EventDTO> GetEventsByName(String name);
         List<EventDTO> GetEventsByDate(DateTime dateTime);
         List<EventDTO> GetEventsByLocation(int locationId);
         List<EventDTO> GetEventsBySize(EventSize size);

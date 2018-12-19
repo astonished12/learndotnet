@@ -36,7 +36,7 @@ namespace EventApp.Web
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddMvc(options => options.Filters.Add(new ActionLogger())) // an instance
+            services.AddMvc(/*options => options.Filters.Add(typeof(ActionLogger)) */) // an instance
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

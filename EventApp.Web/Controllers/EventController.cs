@@ -25,7 +25,7 @@ namespace EventApp.Web.Controllers
         }
 
         [HttpGet]
-        [ServiceFilter(typeof(ActionLogger))]
+        [ActionLogger]
         public IActionResult Index()
         {
             var eventModels = eventService.GetEvents().Select(x => new EventModel().InjectFrom(x) as EventModel);
@@ -54,6 +54,8 @@ namespace EventApp.Web.Controllers
         }
 
         [HttpPost]
+        [ActionLogger]
+
         public IActionResult Create(EventModel eventModel)
         {
             int eventId = eventService.CreateEvent(new EventDTO().InjectFrom(eventModel) as EventDTO);

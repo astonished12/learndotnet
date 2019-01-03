@@ -31,6 +31,10 @@ namespace EventApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EventGuest>().HasKey(eventGuest => new { eventGuest.EventId, eventGuest.GuestId });
+            modelBuilder.Entity<EventType>().HasMany(e => e.Events).WithOne(e => e.EventType).HasForeignKey(e => e.EventTypeId);
+          //  modelBuilder.Entity<Event>().Property(e => e.EndTime).HasColumnType("datetime2");
+
+            //modelBuilder.Entity<Event>().HasOne(e => e.EventType).WithMany(e => e.Events).HasForeignKey(e => e.EventTypeId);
         }
 
     }

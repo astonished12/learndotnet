@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -56,9 +57,15 @@ namespace EventApp.Web.Controllers
         [HttpPost]
         [ActionLogger]
 
-        public IActionResult Create(EventModel eventModel)
+        public async Task<ActionResult> Create(EventModel eventModel)
         {
             int eventId = eventService.CreateEvent(new EventDTO().InjectFrom(eventModel) as EventDTO);
+
+            using (var stream = new FileStream(@"C:\temp\"+eventModel.EventImage.FileName, FileMode.Create))
+            {
+                await eventModel.EventImage.CopyToAsync(stream);
+            }
+
             if (eventId > 0)
             {
                 return RedirectToAction("Index");

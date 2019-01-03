@@ -9,5 +9,12 @@ namespace EventApp.Data.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsAdultsOnly { get; set; }
+
+        public virtual List<Event> Events { get; set; }
+
+        public EventType()
+        {
+            Events = new List<Event>();
+        }
     }
 }

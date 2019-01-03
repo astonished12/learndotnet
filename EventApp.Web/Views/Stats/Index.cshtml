@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<!--load chart js or use CDN-->
+<script src="~/js/Chart.js"></script>
+<h2>Index</h2>
+
+<canvas id="doughnut-chart" width="800" height="450"></canvas>
+<script>
+
+    function randomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        
+    }
+
+    setInterval(function () {
+        $.ajax({
+            url: "http://localhost:5000/Stats/GetJsonDataForEventType",
+            type: 'GET',
+            error: function () {
+                console.log("Error on ajax call");
+            },
+            success: function (data) {
+                debugger;
+                var ctx = document.getElementById("doughnut-chart");
+                labelsArray = [];
+                dataArray = [];
+                backgroundColorArray = [];
+
+                data.forEach(function (element,index) {
+                    labelsArray.push(element.name);
+                    dataArray.push(element.count);
+                    backgroundColorArray.push(randomColor());
+                })
+
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labelsArray,
+                        datasets: [
+                            {
+                                label: "Event type",
+                                backgroundColor: backgroundColorArray,
+                                data: dataArray
+                            }
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Event type stats'
+                        }
+                    }
+                });
+            }
+        })
+    }, 3000);
+    
+</script>

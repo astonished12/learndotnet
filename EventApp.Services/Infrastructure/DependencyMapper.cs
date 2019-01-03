@@ -3,6 +3,7 @@ using EventApp.Data.Infrastructure;
 using EventApp.Services.EventService;
 using EventApp.Services.GuestService;
 using EventApp.Services.LocationService;
+using EventApp.Services.StatisticsService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace EventApp.Services.Infrastructure
             services.AddScoped<IEventService, EventService.EventService>();
             services.AddScoped<IGuestService, GuestService.GuestService>();
             services.AddScoped<ILocationService, LocationService.LocationService>();
+            services.AddScoped<IStatisticsService, StatisticsService.StatisticsService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

@@ -40,7 +40,7 @@ namespace EventApp.Web.Filters
                 }
             }
 
-                var resultContext = await next();
+            var resultContext = await next();
 
             using (var responseBody = new MemoryStream())
             {

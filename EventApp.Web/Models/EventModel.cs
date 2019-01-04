@@ -17,5 +17,6 @@ namespace EventApp.Web.Models
         public int LocationId { get; set; }
         public int EventTypeId { get; set; }
         public IFormFile EventImage { get; set; }
+        public string ImageUri { get; set; }
     }
 }

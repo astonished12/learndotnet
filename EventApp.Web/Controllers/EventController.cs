@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EventApp.Services.EventService;
 using EventApp.Services.EventService.EventDtos;
 using EventApp.Services.GuestService;
+using EventApp.Services.ImageStorageService;
 using EventApp.Web.Filters;
 using EventApp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +19,13 @@ namespace EventApp.Web.Controllers
     {
         private IEventService eventService;
         private IGuestService guestService;
+        private IImageStorageService imageStorageService;
 
-        public EventController(IEventService eventService, IGuestService guestService)
+        public EventController(IEventService eventService, IGuestService guestService, IImageStorageService imageStorageService)
         {
             this.eventService = eventService;
             this.guestService = guestService;
+            this.imageStorageService = imageStorageService;
         }
 
         [HttpGet]
@@ -56,15 +59,17 @@ namespace EventApp.Web.Controllers
 
         [HttpPost]
         [ActionLogger]
-
         public async Task<ActionResult> Create(EventModel eventModel)
         {
-            int eventId = eventService.CreateEvent(new EventDTO().InjectFrom(eventModel) as EventDTO);
+            var eventToBeCreated = (new EventDTO().InjectFrom(eventModel) as EventDTO);
 
-            using (var stream = new FileStream(@"C:\temp\"+eventModel.EventImage.FileName, FileMode.Create))
+            using (var stream = new MemoryStream())
             {
                 await eventModel.EventImage.CopyToAsync(stream);
+                eventToBeCreated.ImageUri = await imageStorageService.StoreImage(eventModel.EventImage.FileName, stream.GetBuffer());
             }
+
+            int eventId = eventService.CreateEvent(eventToBeCreated);
 
             if (eventId > 0)
             {
@@ -85,7 +90,6 @@ namespace EventApp.Web.Controllers
 
             return View(new EventModel().InjectFrom(eventFromId) as EventModel);
         }
-        
 
         [HttpPost]
         public IActionResult Edit(EventModel eventModel)
@@ -93,7 +97,6 @@ namespace EventApp.Web.Controllers
             eventService.Update(new EventDTO().InjectFrom(eventModel) as EventDTO);
             return RedirectToAction("Index");
         }
-
 
         [HttpGet]
         public IActionResult Delete(int id)

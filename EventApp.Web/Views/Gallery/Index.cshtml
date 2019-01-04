@@ -1,0 +1,10 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach(var uri in Model) { 
+    <img src="@uri" width="300" height="300"/>
+}

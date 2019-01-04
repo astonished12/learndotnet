@@ -12,6 +12,7 @@ namespace EventApp.Data.Entities
         public DateTime EndTime { get; set; }
         public decimal EstimatedBudget { get; set; }
         public string Description { get; set; }
+        public string ImageUri { get; set; }
 
         //ref to Location table one to one
         public int LocationId { get; set; }

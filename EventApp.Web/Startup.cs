@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventApp.Services.Configurations;
 using EventApp.Services.Infrastructure;
 using EventApp.Web.Filters;
 using EventApp.Web.Middlewares;
@@ -34,6 +35,8 @@ namespace EventApp.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.Configure<StorageSettings>(options => Configuration.GetSection("StorageSettings").Bind(options));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc(/*options => options.Filters.Add(typeof(ActionLogger)) */) // an instance

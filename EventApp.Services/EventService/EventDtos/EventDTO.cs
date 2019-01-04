@@ -14,5 +14,6 @@ namespace EventApp.Services.EventService.EventDtos
         public string Description { get; set; }
         public int LocationId { get; set; }
         public int EventTypeId { get; set; }
+        public string ImageUri { get; set; }
     }
 }

@@ -43,7 +43,10 @@ namespace EventApp.Services.ImageStorageService
             var URIs = new List<string>();
             foreach (var blob in blobResultSegment.Results)
             {
-                URIs.Add(blob.Uri.AbsoluteUri);
+                if (blob is CloudBlockBlob)
+                {
+                    URIs.Add(blob.Uri.AbsoluteUri);
+                }
             }
 
             return URIs;

@@ -1,0 +1,70 @@
+﻿header {
+    width: 100%;
+    max-width: 993px;
+    margin: 0 auto;    
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    float: left;
+}
+
+.pHeader {
+    margin-top:15%;
+    float:right;    
+    font-family: myFirstFont;
+    color: #a8c245;
+}
+
+ul {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+li {
+    display: inline-block;
+    font-size: 13px;
+    font-family: myFirstFont;
+    color: #a8c245;
+}
+
+li + li::before {
+    content: " / ";
+}
+
+.buttonNav {
+    float: left;
+    width: 135px;
+    height: 40px;
+    color: #3a5a24;
+    font-family: 'neo-sans-1361508444-webfont';
+    font-size: 20px;
+    background: transparent;
+    border: transparent;
+}
+
+button + button::before {
+    content: " / ";
+}
+
+#searchInput {
+    width:25%;
+    max-width:240px;
+}
+
+
+@font-face {
+    font-family: myFirstFont;
+    src: 
+}

@@ -5,16 +5,19 @@
     src: url('../fonts/neo-sans-1361508444-webfont.ttf') format('truetype');
 }
 
-
+body {
+    background-color: lightgray;
+}
 header {
     width: 100%;
     max-width: 993px;
-    margin: 0 auto;    
+    margin: 0 auto;
     padding-top: 30px;
     padding-left: 30px;
+    background-color:white;
 }
 
-.topHeader, .bottomHeader {
+.top-header, .bottom-header {
     display: flex;
     justify-content: space-between;
 }
@@ -25,7 +28,7 @@ header {
     display: inline-block;
 }
 
-.pHeader {
+.p-header {
     margin-top: 15%;
     display: inline-block;
     font-family: myFirstFont;
@@ -48,26 +51,15 @@ li.element-li + li.element-li::before {
     content: " / ";
 }
 
-.buttonNav {
-    float: left;
-    width: 135px;
-    height: 40px;
-    color: #3a5a24;
-    font-family: 'neo-sans-1361508444-webfont';
-    font-size: 20px;
-    background: transparent;
-    border: transparent;
-}
 
-
-#search-div {
+.search-div {
     width: 25%;
     height: 49px;
     max-width: 240px;
     position: relative;
 }
 
-#search-input {
+.search-input {
     width: 100%;
     height: 100%;
     font-size: 14px;
@@ -79,12 +71,12 @@ li.element-li + li.element-li::before {
     height: 0;
     border-bottom: 15px solid #a8c345;
     border-left: 15px solid transparent;
-    position: absolute; 
+    position: absolute;
     bottom: 5px;
     right: 6px;
 }
 
-nav {   
+nav {
     width: 75%;
 }
 
@@ -95,7 +87,7 @@ nav ul {
 }
 
 .nav-element {
-    font-size:20px;
+    font-size: 20px;
 }
 
 .arrow-nav {
@@ -105,3 +97,41 @@ nav ul {
 
 
 /*Mid section*/
+.mid-section {
+    width: 96.8%;
+    max-width: 968px;
+    height: 240px;
+    margin: 1.6% auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.first-container {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.first-container-left{
+    position:relative;
+}
+
+#logo-img {
+    position: absolute;
+    bottom: 16.7%;
+    right: 27%;
+}
+
+.centered {
+    position: absolute;
+    font-size: 500%;
+    font-family: 'neo-sans-1361508444-webfont';
+    color: white;
+    top: 22%;
+    right: 12.5%;
+}
+
+.background {
+    background-color: darkolivegreen;
+}

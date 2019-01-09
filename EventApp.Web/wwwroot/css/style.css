@@ -1,4 +1,12 @@
-﻿header {
+﻿/*Header section*/
+
+@font-face {
+    font-family: 'neo-sans-1361508444-webfont';
+    src: url('../fonts/neo-sans-1361508444-webfont.ttf') format('truetype');
+}
+
+
+header {
     width: 100%;
     max-width: 993px;
     margin: 0 auto;    
@@ -6,23 +14,20 @@
     padding-left: 30px;
 }
 
-.topHeader {
-    display: flex;
-    justify-content: space-between;
-}
-
-.bottomHeader {
+.topHeader, .bottomHeader {
     display: flex;
     justify-content: space-between;
 }
 
 .logo {
     float: left;
+    padding-right: 2%;
+    display: inline-block;
 }
 
 .pHeader {
-    margin-top:15%;
-    float:right;    
+    margin-top: 15%;
+    display: inline-block;
     font-family: myFirstFont;
     color: #a8c245;
 }
@@ -35,11 +40,11 @@ ul {
 li {
     display: inline-block;
     font-size: 13px;
-    font-family: myFirstFont;
+    font-family: 'neo-sans-1361508444-webfont';
     color: #a8c245;
 }
 
-li + li::before {
+li.element-li + li.element-li::before {
     content: " / ";
 }
 
@@ -54,17 +59,49 @@ li + li::before {
     border: transparent;
 }
 
-button + button::before {
-    content: " / ";
+
+#search-div {
+    width: 25%;
+    height: 49px;
+    max-width: 240px;
+    position: relative;
 }
 
-#searchInput {
-    width:25%;
-    max-width:240px;
+#search-input {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    padding-left: 3%;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-bottom: 15px solid #a8c345;
+    border-left: 15px solid transparent;
+    position: absolute; 
+    bottom: 5px;
+    right: 6px;
+}
+
+nav {   
+    width: 75%;
+}
+
+nav ul {
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-element {
+    font-size:20px;
+}
+
+.arrow-nav {
+    stroke: lightgray;
+    stroke-width: 1
 }
 
 
-@font-face {
-    font-family: myFirstFont;
-    src: 
-}
+/*Mid section*/

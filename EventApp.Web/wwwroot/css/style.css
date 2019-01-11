@@ -19,17 +19,21 @@ header {
     justify-content: space-between;
 }
 
+.top-header-left {
+    width: 50%;
+}
+
 .logo {
     float: left;
     padding-right: 2%;
-    display: inline-block;
+    white-space: nowrap;
 }
 
 .p-header {
-    margin-top: 15%;
     display: inline-block;
     font-family: myFirstFont;
     color: #a8c245;
+    margin-top:9%;
 }
 
 ul {
@@ -77,7 +81,7 @@ nav {
     width: 75%;
 }
 
-nav ul {
+.nav-ul {
     padding: 2%;
     display: flex;
     justify-content: space-between;
@@ -85,6 +89,7 @@ nav ul {
 
 .nav-element {
     font-size: 20px;
+    color: #a8c245;
 }
 
 .arrow-nav {
@@ -92,9 +97,14 @@ nav ul {
     stroke-width: 1
 }
 
+.element-li-nav {
+    display: inline-block;
+    font-size: 13px;
+    font-family: 'neo-sans-1361508444-webfont';
+    color: #a8c245;
+}
 
 /*Mid section*/
-
 .mid-section {
     width: 96.8%;
     max-width: 968px;
@@ -218,7 +228,7 @@ nav ul {
     max-width: 968px;
     display: flex;
     width: 96.8%;
-    max-width: 968px;
+    max-width: 968px;   
     height: 240px;
     margin: 1.6% auto;
     justify-content: space-between;
@@ -277,3 +287,38 @@ nav ul {
 
 
 
+@media only screen and (max-width: 992px) {
+    .p-header {
+        display:none;
+    }
+
+    .bottom-header {
+        display: flex;
+        flex-direction:column;
+    }
+
+    .nav-ul {
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .arrow-nav {
+        display: none;
+    }
+
+    .element-li-nav {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 13px;
+        font-family: 'neo-sans-1361508444-webfont';
+        color: #a8c245;
+    }
+
+    .search-div {
+        width: 96%;
+        padding-left: 1%;
+        position: relative;
+        max-width:unset
+    }
+}

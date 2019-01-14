@@ -5,6 +5,10 @@
     src: url('../fonts/neo-sans-1361508444-webfont.ttf') format('truetype');
 }
 
+html {
+    font-size: 13px;
+}
+
 header {
     width: 100%;
     max-width: 993px;
@@ -158,12 +162,25 @@ nav {
     background-color: darkolivegreen;
     width: 50%;
     display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.first-container-right-top {
+    background-color: darkolivegreen;
+    width: 50%;
+    display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     position: relative;
 }
 
+.first-container-right-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
 .dummy-text {
     font-family: myFirstFont;
     font-size: 18px;
@@ -180,6 +197,17 @@ nav {
 .second-container {
     width: 25%;
     position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+}
+
+.second-container-image {
+    object-fit: cover;
+    object-position: 0 0;
+    width: 100%;
+    height: 100%;
 }
 
 .arrow-medium {
@@ -187,9 +215,6 @@ nav {
     height: 0;
     border-bottom: 42px solid #a8c345;
     border-left: 42px solid transparent;
-    position: absolute;
-    right: 10.41%;
-    bottom: 10%;
 }
 
 .second-container-top {  
@@ -205,10 +230,7 @@ nav {
 }
 
 .p-second-container {
-    font-size: 15px;
-    position: absolute;
-    bottom: 9%;
-    left: 8%;
+    font-size: 1rem;
     font-family: myFirstFont;
     color:#665
 }
@@ -216,6 +238,10 @@ nav {
 .third-container {
     width: 25%;
     position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
 }
 
 .third-container-top{
@@ -283,11 +309,23 @@ nav {
     left: 4%;
 }
 
+.item {
+    width:80%;
+}
+
+.arrow-div{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.second-container {
+    display: flex;
+    flex-direction: column;
+}
 
 
 
-
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 420px) {
     .p-header {
         display:none;
     }
@@ -321,4 +359,25 @@ nav {
         position: relative;
         max-width:unset
     }
+
+    .mid-section {
+        flex-flow:row wrap;
+        height:auto;
+    }
+
+    .first-container{
+        width:100%;
+        height:206px;
+    }
+
+    .second-container{
+        width:50%;
+        height:206px;
+    }
+
+    .third-container{
+        width:50%;
+        height:206px;   
+    }
+
 }

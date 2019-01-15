@@ -25,6 +25,7 @@
 
 <body>
     <header>
+
         <section class="top-header">
             <div class="top-header-left">
                 <img class="logo" src="~/images//logo.png" alt="Expert Network logo" />
@@ -50,7 +51,13 @@
         </section>
 
         <section class="bottom-header">
-            <nav>
+            <div class="menu-burger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <nav class="menu">
                 <ul class="nav-ul">
                     <li class="element-li-nav">
                         <a class="nav-element" href="#">
@@ -85,7 +92,7 @@
                             Lorem Ipsum
                         </a>
                     </li>
-                </ul>              
+                </ul>
             </nav>
 
             <div class="search-div">
@@ -123,10 +130,7 @@
         </div>
 
         <div class="second-container">
-
-            <div class="item">
-                <img class="second-container-image" src="~/images//second-container.jpg" />
-            </div>
+            <img class="second-container-image" src="~/images//second-container.jpg" />
             <div class="item ">
                 <p class="p-second-container">-20% Lorem Ipsum is simply dummy text of the printing and typesetting </p>
             </div>
@@ -144,7 +148,7 @@
         </div>
 </section>
 
-    <!--
+    
     <section class="lower-section">
 
         <div class="lower-section-element">
@@ -220,17 +224,10 @@
         </div>
 
     </section>
-           -->
-
 
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - EventApp.Web</p>
-        </footer>
+        @RenderBody()       
     </div>
-
 
 </body>
 

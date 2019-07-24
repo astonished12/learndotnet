@@ -29,7 +29,7 @@ namespace EventApp.Services.ImageStorageService
                 throw new Exception("Wrong extension");
             }
 
-            CloudBlobContainer container = blobClient.GetContainerReference("eventimages");
+            CloudBlobContainer container = blobClient.GetContainerReference("event-app-container");
             CloudBlockBlob blockBlob = container.GetBlockBlobReference(Guid.NewGuid() + extension);
 
             await blockBlob.UploadFromByteArrayAsync(array, 0, array.Length);
@@ -39,7 +39,7 @@ namespace EventApp.Services.ImageStorageService
         }
         public async Task<List<string>> GetImages()
         {
-            var blobResultSegment = await blobClient.GetContainerReference("eventimages").ListBlobsSegmentedAsync(null);
+            var blobResultSegment = await blobClient.GetContainerReference("event-app-container").ListBlobsSegmentedAsync(null);
             var URIs = new List<string>();
             foreach (var blob in blobResultSegment.Results)
             {
